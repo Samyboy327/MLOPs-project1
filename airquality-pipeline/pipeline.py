@@ -28,7 +28,7 @@ prefix = 'mlops'
 session = sagemaker.Session()
 role = sagemaker.get_execution_role()
 region = session.boto_region_name
-#bucket = session.default_bucket()
+
 
 # --------------------------------------------------
 # Pipeline Parameters
@@ -268,4 +268,5 @@ pipeline = Pipeline(
 pipeline.create(role_arn=role)  # Replace with your actual role ARN
 
 pipeline.start()
+
 
