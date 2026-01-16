@@ -40,7 +40,7 @@ accuracy_threshold = ParameterFloat(
 
 input_data = ParameterString(
     name="InputData",
-    default_value=f"s3://{bucket}/airquality/airquality.csv"
+    default_value=f"s3://{bucket}/mlops/airquality.csv"
 )
 
 endpoint_name = ParameterString(
@@ -268,3 +268,4 @@ pipeline = Pipeline(
 pipeline.create(role_arn=role)  # Replace with your actual role ARN
 
 pipeline.start()
+
