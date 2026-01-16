@@ -176,6 +176,7 @@ evaluation_step = ProcessingStep(
 # --------------------------------------------------
 # Model Registration
 # --------------------------------------------------
+'''
 sklearn_model = SKLearnModel(
     model_data=train_step.properties.ModelArtifacts.S3ModelArtifacts,
     role=role,
@@ -195,7 +196,36 @@ register_step = ModelStep(
         approval_status="Approved",
     ),
 )
+'''
 
+'''
+register_step = ModelStep(
+    name="RegisterModel",
+    step_args=estimator.register(
+        model_data=train_step.properties.ModelArtifacts.S3ModelArtifacts,
+        model_package_group_name="AirQualityModelGroup",
+        content_types=["application/json"],
+        response_types=["application/json"],
+        inference_instances=["ml.m5.large"],
+        transform_instances=["ml.m5.large"],
+        approval_status="Approved",
+        entry_point="endpoint.py"
+    )
+)'''
+
+
+register_step = ModelStep(
+    name="RegisterModel",
+    step_args=estimator.register(
+        model_package_group_name="AirQualityModelGroup",
+        content_types=["application/json"],
+        response_types=["application/json"],
+        inference_instances=["ml.m5.large"],
+        transform_instances=["ml.m5.large"],
+        approval_status="Approved",
+        entry_point="endpoint.py"
+    )
+)
 # --------------------------------------------------
 # Create Model Step
 # --------------------------------------------------
